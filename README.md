@@ -44,7 +44,7 @@ This role is far from be ready to use. Currently, it only insttalls lightdm and 
 
 ## Todo
 
-[ ] install github hub
-[ ] include tmux cheatsheet
-[ ] configure display with tint2, etc
-[ ] ? install awesome and config it ?
+ - [ ] install github hub
+ - [ ] include tmux cheatsheet
+ - [ ] configure display with tint2, etc
+ - [ ] ? install awesome and config it ?
