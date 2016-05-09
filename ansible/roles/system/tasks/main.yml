@@ -1,0 +1,17 @@
+---
+- name: check if recommend rules is set for apt
+  stat: path=/etc/apt/apt.conf.d/01norecommend
+  register: apt_recommend_rules
+
+- name: set recommend rules for apt
+  copy:
+    content: "APT::Install-Recommends \"0\";\nAPT::Install-Suggests \"0\";\n"
+    dest: "/etc/apt/apt.conf.d/01norecommend"
+  become: yes
+  when: apt_recommend_rules.stat.exists == False
+
+- name: install system packages
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - curl

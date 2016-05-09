@@ -1,0 +1,3 @@
+ram: 512
+proc: 1
+proxy: "http://<user>:<pass>@<ip>:<port>"

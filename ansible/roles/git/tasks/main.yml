@@ -1,0 +1,13 @@
+---
+- name: Install Terminal Packages
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - git
+
+- name: Change git config .files
+  template: src={{ item }}.tpl dest=~/{{ item }} force=yes
+  with_items:
+    - .gitconfig
+    - .gitalias
+    - .gitignore

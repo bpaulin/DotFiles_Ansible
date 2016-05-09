@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  vars_files:
+    - vars/all.yml
+  roles:
+    - system
+    - git
+    - terminal
+    - display

@@ -1,0 +1,22 @@
+---
+- name: Install Display Packages
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - xserver-xorg
+    - xorg
+    - lightdm
+    - openbox
+    - menu
+    - openbox-menu
+    - obconf
+    - obsession
+
+- name: Set Openbox as default
+  become: yes
+  lineinfile:
+    dest: /etc/lightdm/lightdm.conf
+    regexp: "^#user-session=default"
+    line: user-session=openbox
+    state: present
+    backrefs: yes

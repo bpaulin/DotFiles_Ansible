@@ -1,0 +1,48 @@
+---
+- name: Install Terminal Packages
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - zsh
+    - dtrx
+    - ncdu
+    - htop
+
+- stat: path=~/.oh-my-zsh
+  register: ohmyzsh
+
+- name: Download OhMyZsh installer
+  get_url:
+    url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+    dest: ~/install.sh
+  when: ohmyzsh.stat.exists == False
+
+- name: Change .zshrc
+  template: src=.zshrc.tpl dest=~/.zshrc force=yes
+
+## this need a reload of vagrant
+#- name: Change user shell to zsh
+#  become: yes
+#  user: name={{ system.user }} shell=/bin/zsh
+
+#- name: Install OhMyZsh
+#  shell: sh ~/install.shvi
+
+- name: Install vim
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - vim
+
+- name: Change .vimrc
+  template: src=.vimrc.tpl dest=~/.vimrc force=yes
+
+- name: Install screen and tmux
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - tmux
+    - screen
+
+- name: Change .tmux.conf
+  template: src=.tmux.conf.tpl dest=~/.tmux.conf force=yes
