@@ -14,9 +14,10 @@ Currently, 4 roles are defined:
 ### System
 
 This role configures apt to install only wanted packages, not recommend or suggested.
-It also installs usefull packages:
+It also installs useful packages:
 
  * curl
+ * build-essential
 
 ### Git
 
@@ -37,10 +38,23 @@ This role installs and configures usefull packages I use in terminal
  * dtrx
  * ncdu
  * htop
+ * links
+
+## Php
+
+This role installs php5, composer and symfony installer
+
+## NodeJS
+
+This role install nodejs 4.x and grunt-cli
+
+## Ruby
+
+This role installs ruby and bundler
 
 ### Display
 
-This role is far from be ready to use. Currently, it only insttalls lightdm and openbox
+This role is far from be ready to use. Currently, it only installs lightdm and openbox
 
 ## Todo
 
@@ -48,3 +62,5 @@ This role is far from be ready to use. Currently, it only insttalls lightdm and 
  - [ ] include tmux cheatsheet
  - [ ] configure display with tint2, etc
  - [ ] ? install awesome and config it ?
+ - [ ] configure php timezone
+ - [ ] solve memory limit for composer

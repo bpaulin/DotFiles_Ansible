@@ -1,7 +1,8 @@
 ---
 system:
-  user: vagrant
+  user: admin
 git:
   name: Bruno Paulin
   email: brunopaulin@bpaulin.net
   github: bpaulin
+keep_updated: true

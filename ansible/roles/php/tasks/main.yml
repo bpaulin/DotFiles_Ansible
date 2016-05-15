@@ -1,0 +1,56 @@
+---
+- name: install system packages
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - php5
+    - php5-intl
+    - php5-sqlite
+
+- name: Check if composer is installed
+  stat: path=/usr/local/bin/composer
+  register: composer
+
+- name: Download Composer installer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/composer-installer.php
+    mode: 0755
+  when: not composer.stat.exists
+
+- name: Run Composer installer
+  command: >
+    php composer-installer.php
+    chdir=/tmp
+  when: not composer.stat.exists
+
+- name: Move Composer into globally-accessible location
+  become: yes
+  shell: >
+    mv /tmp/composer.phar /usr/local/bin/composer
+    creates=/usr/local/bin/composer
+  when: not composer.stat.exists
+
+- name: Update Composer
+  shell: composer self-update
+  register: composer_update
+  changed_when: "'Updating to version' in composer_update.stdout"
+  when: composer.stat.exists and keep_updated
+
+- name: Check if Symfony installer is installed
+  stat: path=/usr/local/bin/symfony
+  register: symfony
+
+- name: Download Symfony installer
+  become: yes
+  get_url:
+    url: https://symfony.com/installer
+    dest: /usr/local/bin/symfony
+    mode: 0755
+  when: not symfony.stat.exists
+
+- name: Update Symfony installer
+  shell: symfony selfupdate
+  register: symfony_update
+  changed_when: "'Updating to version' in symfony_update.stdout"
+  when: symfony.stat.exists and keep_updated

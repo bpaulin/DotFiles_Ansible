@@ -1,0 +1,29 @@
+---
+- name: Check if NodeJs packages is set
+  stat: path=/etc/apt/sources.list.d/nodesource.list
+  register: nodejs
+
+- name: Download NodeJs installer
+  get_url:
+    url: https://deb.nodesource.com/setup_4.x
+    dest: /tmp/nodejs.sh
+    mode: 0755
+  when: not nodejs.stat.exists
+
+- name: Run NodeJs installer
+  become: yes
+  command: >
+    /tmp/nodejs.sh
+  when: not nodejs.stat.exists
+
+- name: install NodeJs
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - nodejs
+
+- name: Install global packages
+  become: yes
+  npm: name={{ item }} global=yes state=latest
+  with_items:
+    - grunt-cli

@@ -1,9 +1,15 @@
 ---
-- hosts: localhost
+- hosts: aws
   vars_files:
     - vars/all.yml
   roles:
-    - system
-    - git
+#    - system
+#    - git
     - terminal
-    - display
+#    - xml
+#    - php
+#    - nodejs
+#    - ruby
+
+
+#    - display

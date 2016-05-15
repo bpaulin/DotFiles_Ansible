@@ -15,3 +15,9 @@
   apt: name={{ item }} state=latest
   with_items:
     - curl
+    - build-essential
+
+- name: update packages
+  become: yes
+  apt: upgrade=dist update_cache=yes
+  when: keep_updated

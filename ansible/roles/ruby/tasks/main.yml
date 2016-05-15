@@ -1,0 +1,8 @@
+---
+- name: install Ruby
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - ruby
+    - ruby-dev
+    - bundler
