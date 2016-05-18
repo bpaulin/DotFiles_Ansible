@@ -3,13 +3,13 @@
   vars_files:
     - vars/all.yml
   roles:
-#    - system
-#    - git
+    - system
+    - git
     - terminal
-#    - xml
-#    - php
-#    - nodejs
-#    - ruby
+    - xml
+    - php
+    - nodejs
+    - ruby
 
 
 #    - display

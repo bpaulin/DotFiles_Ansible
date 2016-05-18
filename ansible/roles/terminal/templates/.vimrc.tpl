@@ -35,7 +35,6 @@ set fileencoding=utf-8  " The encoding written to file.
 set synmaxcol=300 " Don't try to highlight long lines
 
 syntax on
-colorscheme hemisu
 
 """
 " Vundle
@@ -49,7 +48,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kien/ctrlp.vim'
-Plugin 'noahfrederick/vim-hemisu'
+Plugin 'blueshirts/darcula'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 filetype plugin indent on
@@ -58,3 +60,8 @@ filetype plugin indent on
 " NerdTree
 """
 map <C-n> :NERDTreeToggle<CR>
+
+set t_Co=256
+if filereadable(expand("~/.vim/bundle/darcula/colors/darcula.vim"))
+  colorscheme darcula
+endif

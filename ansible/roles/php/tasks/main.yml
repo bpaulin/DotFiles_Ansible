@@ -32,6 +32,7 @@
   when: not composer.stat.exists
 
 - name: Update Composer
+  become: yes
   shell: composer self-update
   register: composer_update
   changed_when: "'Updating to version' in composer_update.stdout"
@@ -50,6 +51,7 @@
   when: not symfony.stat.exists
 
 - name: Update Symfony installer
+  become: yes
   shell: symfony selfupdate
   register: symfony_update
   changed_when: "'Updating to version' in symfony_update.stdout"

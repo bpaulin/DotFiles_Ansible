@@ -1,57 +1,60 @@
 ---
-#- name: Install Terminal Packages
-#  become: yes
-#  apt: name={{ item }} state=latest
-#  with_items:
-#    - zsh
-#    - dtrx
-#    - ncdu
-#    - htop
-#    - elinks
-#    - bc
-#
-#- stat: path=~/.oh-my-zsh
-#  register: ohmyzsh
-#
-#- name: Download OhMyZsh installer
-#  get_url:
-#    url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-#    dest: /tmp/install.sh
-#  when: ohmyzsh.stat.exists == False
-#
-#- name: Install zsh-syntax-highlighting
-#  git: repo=https://github.com/zsh-users/zsh-syntax-highlighting.git dest=~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-#
-#- name: Change .zshrc
-#  template: src=.zshrc.tpl dest=~/.zshrc force=yes
-#
-#- name: Change user shell to zsh
-#  become: yes
-#  user: name={{ system.user }} shell=/bin/zsh
-#
-#- name: Install OhMyZsh
-#  shell: sh /tmp/install.sh
-#  when: ohmyzsh.stat.exists == False
-#
-#- name: Install vim
-#  become: yes
-#  apt: name={{ item }} state=latest
-#  with_items:
-#    - vim
-#
-#- name: Install Vundle
-#  git: repo=https://github.com/VundleVim/Vundle.vim.git dest=~/.vim/bundle/Vundle.vim
+- name: Install Terminal Packages
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - zsh
+    - dtrx
+    - ncdu
+    - htop
+    - elinks
+    - bc
+
+- stat: path=~/.oh-my-zsh
+  register: ohmyzsh
+
+- name: Download OhMyZsh installer
+  get_url:
+    url: https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+    dest: /tmp/install.sh
+  when: ohmyzsh.stat.exists == False
+
+- name: Install zsh-syntax-highlighting
+  git: repo=https://github.com/zsh-users/zsh-syntax-highlighting.git dest=~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+
+- name: Change .zshrc
+  template: src=.zshrc.tpl dest=~/.zshrc force=yes
+
+- name: Change user shell to zsh
+  become: yes
+  user: name={{ system.user }} shell=/bin/zsh
+
+- name: Install OhMyZsh
+  shell: sh /tmp/install.sh
+  when: ohmyzsh.stat.exists == False
+
+- name: Install vim
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - vim
+
+- name: Install Vundle
+  git: repo=https://github.com/VundleVim/Vundle.vim.git dest=~/.vim/bundle/Vundle.vim
 
 - name: Change .vimrc
   template: src=.vimrc.tpl dest=~/.vimrc force=yes
 
-#- name: Install screen, tmux and byobu
-#  become: yes
-#  apt: name={{ item }} state=latest
-#  with_items:
-#    - tmux
-#    - screen
-#    - byobu
-#
-#- name: Change .tmux.conf
-#  template: src=.tmux.conf.tpl dest=~/.tmux.conf force=yes
+#- name: install vim bundles
+#  shell: vim +PluginInstall +qall 2&> /dev/null
+
+- name: Install screen, tmux and byobu
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - tmux
+    - screen
+    - byobu
+
+- name: Change .tmux.conf
+  template: src=.tmux.conf.tpl dest=~/.tmux.conf force=yes
