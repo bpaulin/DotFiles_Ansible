@@ -29,7 +29,7 @@ set number " Show the line number
 set updatetime=1000
 set ignorecase " Search insensitive
 set smartcase " ... but smart
-let &showbreak="\u21aa " " Show a left arrow when wrapping text
+let &showbreak=" |> " " Show a left arrow when wrapping text
 set encoding=utf-8  " The encoding displayed.
 set fileencoding=utf-8  " The encoding written to file.
 set synmaxcol=300 " Don't try to highlight long lines
@@ -52,16 +52,29 @@ Plugin 'blueshirts/darcula'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/syntastic'
 call vundle#end()
 
 filetype plugin indent on
+
+
+set t_Co=256
+if filereadable(expand("~/.vim/bundle/darcula/colors/darcula.vim"))
+  colorscheme darcula
+endif
 
 """
 " NerdTree
 """
 map <C-n> :NERDTreeToggle<CR>
 
-set t_Co=256
-if filereadable(expand("~/.vim/bundle/darcula/colors/darcula.vim"))
-  colorscheme darcula
-endif
+"""
+" Syntastic
+"""
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
