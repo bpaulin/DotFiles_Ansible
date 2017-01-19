@@ -16,3 +16,4 @@
    - ruby
    - { role: atom, when: with_gui == True }
    - { role: chrome, when: with_gui == True }
+   - { role: terminator, when: with_gui == True }

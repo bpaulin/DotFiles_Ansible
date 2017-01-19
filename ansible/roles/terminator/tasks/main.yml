@@ -1,0 +1,10 @@
+---
+- name: Install terminator
+  become: yes
+  apt: name=terminator state=latest
+
+- name: Ensures ~/.config/terminator/ dir exists
+  file: path=~/.config/terminator/ state=directory
+
+- name: Change terminator config
+  template: src=config.tpl dest=~/.config/terminator/config force=yes
