@@ -1,0 +1,30 @@
+---
+- name: Install desktop package
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items:
+    - openbox
+    - obconf
+    - menu
+    - tint2
+    - tilda
+    - dmenu
+    - lxmenu-data
+
+- name: Ensures config dirs exists
+  file: path=~/.config/{{ item }} state=directory
+  with_items:
+   - openbox
+   - dmenu
+   - tint2
+   - tilda
+
+- name: Change dmenu config
+  template: src={{ item }} dest=~/.config/{{ item }} force=yes
+  with_items:
+    - dmenu/dmenu-bind.sh
+    - openbox/autostart
+    - openbox/menu.xml
+    - openbox/rc.xml
+    - tilda/config_0
+    - tint2/tint2rc
