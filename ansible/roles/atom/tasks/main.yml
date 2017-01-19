@@ -1,0 +1,7 @@
+---
+- name: Install atom for Debian
+  become: yes
+  apt: deb=https://atom.io/download/deb
+
+- name: install atom packages
+  command: apm install language-ansible

@@ -5,7 +5,7 @@
 
 - name: Download NodeJs installer
   get_url:
-    url: https://deb.nodesource.com/setup_4.x
+    url: https://deb.nodesource.com/setup_6.x
     dest: /tmp/nodejs.sh
     mode: 0755
   when: not nodejs.stat.exists

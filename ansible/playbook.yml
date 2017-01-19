@@ -1,15 +1,17 @@
 ---
-- hosts: aws
+- hosts: localhost
   vars_files:
     - vars/all.yml
+    - vars/user.yml
+  vars:
+    system:
+      user: bpaulin
   roles:
-    - system
-    - git
-    - terminal
-    - xml
-    - php
-    - nodejs
-    - ruby
-
-
-#    - display
+   - system
+   - git
+   - terminal
+   - xml
+   - php
+   - nodejs
+   - ruby
+   - { role: atom, when: with_gui == True }

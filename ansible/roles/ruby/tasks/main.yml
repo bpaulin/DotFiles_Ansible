@@ -6,3 +6,4 @@
     - ruby
     - ruby-dev
     - bundler
+    - zlib1g-dev

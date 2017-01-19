@@ -6,6 +6,8 @@
     - php5
     - php5-intl
     - php5-sqlite
+    - php5-curl
+#    - php5-xdebug
 
 - name: Check if composer is installed
   stat: path=/usr/local/bin/composer
