@@ -1,0 +1,3 @@
+---
+set_proxy: true
+proxy: http://user:password@ip:port

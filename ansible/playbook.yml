@@ -3,6 +3,7 @@
   vars_files:
     - vars/all.yml
     - vars/user.yml
+    - vars/proxy.yml
   vars:
     system:
       user: bpaulin

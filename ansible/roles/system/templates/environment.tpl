@@ -1,0 +1,8 @@
+http_proxy="{{ proxy }}"
+https_proxy="{{ proxy }}"
+ftp_proxy="{{ proxy }}"
+no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+HTTP_PROXY="{{ proxy }}"
+HTTPS_PROXY="{{ proxy }}"
+FTP_PROXY="{{ proxy }}"
+NO_PROXY="localhost,127.0.0.1,localaddress,.localdomain.com"

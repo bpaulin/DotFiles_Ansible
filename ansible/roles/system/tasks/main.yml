@@ -2,6 +2,15 @@
 #- name: create user
 #  become: yes
 # user: name={{ system.user }} password={{ system.user |password_hash('sha512') }} append=yes groups=sudo state=present
+- name: set proxy settings
+  template: src=environment.tpl dest=/etc/environment force=yes
+  become: yes
+  when: set_proxy
+
+- name: set proxy settings for apt
+  template: src=95proxy.tpl dest=/etc/apt/apt.conf.d/95proxy force=yes
+  become: yes
+  when: set_proxy
 
 - name: check if recommend rules is set for apt
   stat: path=/etc/apt/apt.conf.d/01norecommend
