@@ -1,0 +1,7 @@
+---
+- name: Install todotxt
+  become: yes
+  apt: name=todotxt-cli state=latest
+
+- name: Change todotxt config
+  template: src=todo.cfg.tpl dest=~/.todo.cfg force=yes
