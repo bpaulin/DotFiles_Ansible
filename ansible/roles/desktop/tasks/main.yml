@@ -10,6 +10,7 @@
     - tilda
     - dmenu
     - lxmenu-data
+    - openbox-menu
 
 - name: Ensures config dirs exists
   file: path=~/.config/{{ item }} state=directory

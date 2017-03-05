@@ -3,8 +3,7 @@
 #  become: yes
 # user: name={{ system.user }} password={{ system.user |password_hash('sha512') }} append=yes groups=sudo state=present
 - name: set proxy settings
-  template: src=environment.tpl dest=/etc/environment force=yes
-  become: yes
+  template: src=xsessionrc.tpl dest=~/.xsessionrc force=yes
   when: set_proxy
 
 - name: set proxy settings for apt

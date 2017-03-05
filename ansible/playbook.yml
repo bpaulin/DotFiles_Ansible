@@ -3,7 +3,7 @@
   vars_files:
     - vars/all.yml
     - vars/user.yml
-    - vars/proxy.yml
+#    - vars/proxy.yml
   vars:
     system:
       user: bpaulin
@@ -12,9 +12,9 @@
    - git
    - terminal
    - xml
-   - php
-   - nodejs
-   - ruby
+#   - php
+#   - nodejs
+#   - ruby
    - { role: desktop, when: with_gui == True }
    - { role: atom, when: with_gui == True }
    - { role: chrome, when: with_gui == True }

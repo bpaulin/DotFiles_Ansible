@@ -1,6 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="bira"
-plugins=(git composer symfony2 debian zsh-syntax-highlighting)
+plugins=(git debian zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
